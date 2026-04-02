@@ -1,0 +1,440 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg,#eef2f7,#f6f8fc);
+  margin: 0;
+}
+
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+/* CONTAINER */
+.pd-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 15px;
+}
+
+/* GRID */
+.pd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* GALLERY */
+.pd-gallery {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* MAIN IMAGE */
+.pd-main {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* THUMB */
+.pd-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pd-thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* INFO */
+.pd-info {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.pd-price {
+  color: red;
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+/* BUTTON */
+.primary-btn {
+  padding: 10px 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* CALC */
+.pd-calc {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.pd-calc-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* ✅ important */
+}
+
+.pd-calc-grid input {
+  flex: 1 1 45%; /* ✅ responsive width */
+  min-width: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+@media (max-width: 600px) {
+
+  .pd-calc-grid {
+    flex-direction: column; /* ✅ stack vertically */
+  }
+
+  .pd-calc-grid input {
+    width: 100%; /* ✅ full width */
+  }
+
+}
+
+.pd-calc h3 {
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .pd-calc h3 {
+    font-size: 14px;
+  }
+}
+
+/* MODAL */
+.img-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* MODAL IMAGE */
+.modal-img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  background: white;
+  border-radius: 10px;
+}
+
+/* CLOSE */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+  color: white;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* NAV */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.nav-btn.left {
+  left: 20px;
+}
+
+.nav-btn.right {
+  right: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+  .pd-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-main {
+    height: 250px;
+  }
+
+  .modal-img {
+    width: 90%;
+    height: auto;
+  }
+
+}
+
+/* MODERN CALCULATOR */
+
+.modern-calc{
+background: rgba(255,255,255,0.7);
+backdrop-filter: blur(12px);
+border-radius:20px;
+padding:25px;
+box-shadow:0 10px 40px rgba(0,0,0,0.1);
+margin-top:40px;
+}
+
+.calc-title{
+font-size:22px;
+font-weight:600;
+margin-bottom:15px;
+}
+
+/* ROW */
+
+.calc-row{
+display:grid;
+grid-template-columns:1fr 1fr 1fr auto;
+gap:10px;
+margin-bottom:12px;
+align-items:end;
+}
+
+/* INPUT */
+
+.input-group{
+display:flex;
+flex-direction:column;
+}
+
+.input-group label{
+font-size:12px;
+color:#777;
+margin-bottom:3px;
+}
+
+.input-group input{
+padding:10px;
+border-radius:8px;
+border:1px solid #ddd;
+outline:none;
+transition:0.3s;
+}
+
+.input-group input:focus{
+border-color:#ff4d4d;
+box-shadow:0 0 5px rgba(255,77,77,0.3);
+}
+
+/* BUTTONS */
+
+.add-btn{
+background:#4caf50;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.save-btn{
+background:#ff4d4d;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.remove-btn{
+background:#eee;
+border:none;
+padding:8px;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* ACTIONS */
+
+.calc-actions{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+/* SUMMARY */
+
+.calc-summary{
+margin-top:20px;
+padding:15px;
+background:#111;
+color:#fff;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:18px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.calc-row{
+grid-template-columns:1fr;
+}
+
+.calc-actions{
+flex-direction:column;
+}
+
+}
+/* TABLE WRAPPER */
+.pd-table {
+  width: 100%;
+  overflow-x: auto; /* mobile scroll */
+  margin-top: 20px;
+}
+
+/* TABLE */
+.pd-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* scroll enable */
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* HEADER */
+.pd-table th {
+  background: #f5f7fa;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+/* CELL */
+.pd-table th,
+.pd-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* ROW HOVER */
+.pd-table tr:hover {
+  background: #fafafa;
+}
+
+/* BUTTONS */
+.pd-table button {
+  margin-right: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+/* EDIT BUTTON */
+.pd-table button:first-child {
+  background: #4CAF50;
+  color: white;
+}
+
+.pd-table button:first-child:hover {
+  background: #45a049;
+}
+
+/* DELETE BUTTON */
+.pd-table button:last-child {
+  background: #ff4d4f;
+  color: white;
+}
+
+.pd-table button:last-child:hover {
+  background: #e53935;
+}
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+/* TABLE WRAPPER */
+.pd-table {
+  width: 100%;
+  overflow-x: auto; /* ✅ mobile scroll */
+  margin-top: 20px;
+}
+
+/* TABLE */
+.pd-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* ✅ important */
+  background: #fff;
+  border-radius: 10px;
+}
+
+/* HEADER */
+.pd-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+/* CELL */
+.pd-table th,
+.pd-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+/* BUTTON */
+.pd-table button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.pd-table button:first-child {
+  background: #4CAF50;
+  color: white;
+}
+
+.pd-table button:last-child {
+  background: #ff4d4f;
+  color: white;
+}
+
+.pd-table::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pd-table::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+}

@@ -1,0 +1,230 @@
+/* background */
+
+.account-shell{
+
+min-height:100vh;
+
+padding:60px 20px;
+
+background:
+linear-gradient(135deg,#eef2f8,#f7f9fc);
+
+font-family:Poppins;
+
+}
+
+/* container */
+
+.account-wrapper{
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+.account-heading{
+
+font-size:30px;
+
+margin-bottom:35px;
+
+}
+
+/* grid layout */
+
+.account-grid{
+
+display:grid;
+
+grid-template-columns:280px 1fr;
+
+gap:35px;
+
+}
+
+/* profile panel */
+
+.profile-panel{
+
+background:rgba(255,255,255,0.65);
+
+backdrop-filter:blur(12px);
+
+border-radius:22px;
+
+padding:30px;
+
+text-align:center;
+
+box-shadow:
+25px 25px 80px rgba(0,0,0,0.08),
+-20px -20px 60px white;
+
+transition:.4s;
+
+}
+
+.profile-panel:hover{
+
+transform:translateY(-6px);
+
+}
+
+/* avatar */
+
+.avatar-wrap img{
+
+width:100px;
+
+height:100px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+margin-bottom:12px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+/* main area */
+
+.account-main{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+/* glass cards */
+
+.glass-card{
+
+background:rgba(255,255,255,0.7);
+
+backdrop-filter:blur(14px);
+
+border-radius:22px;
+
+padding:28px;
+
+box-shadow:
+25px 25px 80px rgba(0,0,0,0.08),
+-20px -20px 60px white;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+/* inputs */
+
+.form-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:14px;
+
+}
+
+input,textarea{
+
+padding:12px;
+
+border-radius:10px;
+
+border:1px solid #e2e2e2;
+
+font-size:14px;
+
+background:white;
+
+}
+
+/* buttons */
+
+.primary-action{
+
+background:
+linear-gradient(135deg,#ff5a5f,#ff8084);
+
+color:white;
+
+border:none;
+
+padding:12px;
+
+border-radius:10px;
+
+font-weight:600;
+
+cursor:pointer;
+
+box-shadow:0 12px 30px rgba(255,90,95,0.35);
+
+transition:.3s;
+
+}
+
+.primary-action:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* orders */
+
+.order-row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:10px 0;
+
+border-bottom:1px solid #eee;
+
+}
+
+/* tablet */
+
+@media(max-width:900px){
+
+.account-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+.account-heading{
+font-size:24px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.profile-panel{
+padding:22px;
+}
+
+.glass-card{
+padding:20px;
+}
+
+}

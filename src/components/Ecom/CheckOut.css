@@ -1,0 +1,197 @@
+/* PAGE */
+
+.checkout-shell{
+
+min-height:100vh;
+
+padding:60px 20px;
+
+background:
+linear-gradient(135deg,#eef2f8,#f7f9fc);
+
+}
+
+/* container */
+
+.checkout-container{
+max-width:1200px;
+margin:auto;
+}
+
+/* title */
+
+.checkout-title{
+font-size:28px;
+margin-bottom:30px;
+}
+
+/* layout */
+
+.checkout-layout{
+
+display:grid;
+
+grid-template-columns:1.2fr 0.8fr;
+
+gap:35px;
+
+}
+
+/* billing card */
+
+.billing-card{
+
+background:rgba(255,255,255,0.75);
+
+backdrop-filter:blur(14px);
+
+border-radius:22px;
+
+padding:28px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+box-shadow:
+25px 25px 70px rgba(0,0,0,0.08),
+-15px -15px 50px white;
+
+}
+
+/* inputs */
+
+.billing-card input,
+.billing-card textarea,
+.billing-card select{
+
+padding:12px;
+
+border-radius:10px;
+
+border:1px solid #e2e2e2;
+
+font-size:14px;
+
+}
+
+/* summary */
+
+.summary-card{
+
+background:rgba(255,255,255,0.8);
+
+backdrop-filter:blur(14px);
+
+border-radius:22px;
+
+padding:25px;
+
+box-shadow:
+25px 25px 70px rgba(0,0,0,0.08),
+-15px -15px 50px white;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+height:fit-content;
+
+}
+
+/* rows */
+
+.order-row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:8px 0;
+
+border-bottom:1px solid #eee;
+
+}
+
+.order-total{
+
+display:flex;
+
+justify-content:space-between;
+
+font-weight:600;
+
+font-size:18px;
+
+margin-top:10px;
+
+}
+
+/* button */
+
+.place-order{
+
+margin-top:15px;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+background:
+linear-gradient(135deg,#ff5a5f,#ff8084);
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+box-shadow:0 12px 30px rgba(255,90,95,0.35);
+
+transition:.3s;
+
+}
+
+.place-order:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* tablet */
+
+@media(max-width:900px){
+
+.checkout-layout{
+grid-template-columns:1fr;
+}
+
+.summary-card{
+order:-1;
+}
+
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+.checkout-title{
+font-size:24px;
+}
+
+.billing-card{
+padding:20px;
+}
+
+.summary-card{
+padding:18px;
+}
+
+}

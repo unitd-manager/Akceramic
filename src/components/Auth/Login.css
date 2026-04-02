@@ -1,0 +1,240 @@
+/* animated background */
+
+.auth-shell{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:linear-gradient(120deg,#eef2f8,#ffffff);
+
+background-size:300% 300%;
+
+animation:bgMove 8s infinite alternate;
+
+font-family:Poppins;
+
+padding:20px;
+
+}
+
+@keyframes bgMove{
+
+0%{background-position:left}
+100%{background-position:right}
+
+}
+
+/* card */
+
+.auth-card{
+
+width:100%;
+
+max-width:420px;
+
+background:rgba(255,255,255,0.8);
+
+backdrop-filter:blur(14px);
+
+padding:40px;
+
+border-radius:26px;
+
+box-shadow:
+
+25px 25px 70px rgba(0,0,0,0.08),
+
+-20px -20px 60px white;
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+}
+
+/* logo */
+
+.auth-logo{
+
+text-align:center;
+
+}
+
+.auth-logo img{
+
+width:70px;
+
+margin-bottom:6px;
+
+}
+
+.auth-logo h3{
+
+margin:0;
+
+}
+
+.auth-logo p{
+
+font-size:13px;
+
+color:#777;
+
+}
+
+/* tabs */
+
+.auth-tabs{
+
+display:flex;
+
+gap:10px;
+
+margin-top:10px;
+
+}
+
+.auth-tabs button{
+
+flex:1;
+
+padding:10px;
+
+border:none;
+
+background:#eee;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+.auth-tabs .active{
+
+background:#ff5a5f;
+
+color:white;
+
+}
+
+/* inputs */
+
+.auth-card input{
+
+padding:12px;
+
+border-radius:10px;
+
+border:1px solid #ddd;
+
+width:100%;
+
+}
+
+/* password field */
+
+.pass-field{
+
+display:flex;
+
+align-items:center;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+overflow:hidden;
+
+}
+
+.pass-field input{
+
+border:none;
+
+flex:1;
+
+padding:12px;
+
+}
+
+.pass-field span{
+
+padding:0 12px;
+
+cursor:pointer;
+
+}
+
+/* button */
+
+.auth-btn{
+
+margin-top:8px;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+background:linear-gradient(135deg,#ff5a5f,#ff8084);
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(255,90,95,0.35);
+
+}
+
+/* google */
+
+.google-btn{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+border:1px solid #ddd;
+
+padding:10px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+background:white;
+
+}
+
+.google-btn img{
+
+width:18px;
+
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+.auth-card{
+
+padding:28px 20px;
+
+}
+
+}

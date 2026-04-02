@@ -1,0 +1,119 @@
+/* =================================
+   5D FLOATING MOBILE NAVBAR
+================================= */
+
+.mobile-nav{
+position:fixed;
+bottom:5px;
+left:50%;
+transform:translateX(-50%);
+
+width:95%;
+max-width:500px;
+
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+padding:14px 18px;
+
+border-radius:26px;
+
+background:rgba(20,20,20,0.85);
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 12px 40px rgba(0,0,0,0.45),
+inset 0 0 8px rgba(255,255,255,0.08);
+
+z-index:999;
+}
+
+/* NAV ITEM */
+
+.mobile-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+
+text-decoration:none;
+color:#bbb;
+
+font-size:11px;
+gap:4px;
+
+transition:.3s;
+position:relative;
+}
+
+/* ICON */
+
+.nav-icon{
+width:34px;
+height:34px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+font-size:17px;
+
+background:rgba(255,255,255,0.06);
+
+box-shadow:
+0 4px 10px rgba(0,0,0,0.35),
+inset 0 0 6px rgba(255,255,255,0.05);
+
+transition:.3s;
+}
+
+/* ACTIVE */
+
+.mobile-item.active .nav-icon{
+background:linear-gradient(45deg,#ff5a5f,#ff7a00);
+color:white;
+
+transform:translateY(-3px);
+
+box-shadow:0 6px 14px rgba(255,90,95,0.45);
+}
+
+.mobile-item.active span{
+color:#ff7a00;
+font-weight:500;
+}
+
+/* TEXT */
+
+.mobile-item span{
+font-size:11px;
+margin-top:2px;
+}
+
+.mobile-nav .active{
+background:transparent !important;
+box-shadow:none !important;
+}
+
+/* HOVER */
+
+.mobile-item:hover .nav-icon{
+transform:translateY(-2px);
+}
+
+/* MOBILE SAFE SPACE */
+
+@media(max-width:768px){
+body{
+padding-bottom:90px;
+}
+}
+
+/* DESKTOP HIDE */
+
+@media(min-width:768px){
+.mobile-nav{
+display:none;
+}
+}
