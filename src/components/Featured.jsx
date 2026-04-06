@@ -74,7 +74,7 @@ centeredSlides={true}
 grabCursor={true}
 navigation={true}
 modules={[EffectCoverflow, Navigation, Autoplay]}
-// autoplay={{delay:2500}}
+autoplay={{delay:2500}}
 
 coverflowEffect={{
 rotate:25,

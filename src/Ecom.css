@@ -3,8 +3,8 @@
 ========================= */
 
 .product-page{
-padding:60px 0 120px;
-background:linear-gradient(135deg,#eef2f8,#f7f9fc);
+padding:0px 0 0px;
+/* background:linear-gradient(135deg,#eef2f8,#f7f9fc); */
 overflow:scroll
 }
 
@@ -32,9 +32,9 @@ padding:25px;
 
 border-radius:18px;
 
-box-shadow:
+/* box-shadow:
 20px 20px 60px rgba(0,0,0,0.08),
--20px -20px 60px white;
+-20px -20px 60px white; */
 
 display:flex;
 flex-direction:column;
@@ -171,9 +171,9 @@ overflow:hidden;
 
 position:relative;
 
-box-shadow:
+/* box-shadow:
 25px 25px 70px rgba(0,0,0,0.08),
--15px -15px 50px white;
+-15px -15px 50px white; */
 
 transition:.4s;
 
@@ -284,6 +284,94 @@ font-size:13px;
 cursor:pointer;
 
 box-shadow:0 8px 20px rgba(255,90,95,0.35);
+
+}
+
+/* =========================
+   MOBILE FILTER FIX (CLEAN UI)
+========================= */
+
+.mobile-filter-btn{
+display:none;
+background:#ff5a5f;
+color:#fff;
+padding:8px 14px;
+border-radius:10px;
+border:none;
+font-size:14px;
+font-weight:600;
+}
+
+/* OVERLAY */
+.filter-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(4px);
+z-index:999;
+}
+
+/* FILTER PANEL MOBILE */
+@media(max-width:768px){
+
+.mobile-filter-btn{
+display:block;
+}
+
+/* ❗ IMPORTANT RESET */
+.product-layout{
+grid-template-columns:1fr !important;
+}
+
+/* 🔥 SLIDE PANEL */
+.filters{
+position:fixed !important;
+top:0;
+right:-100%;   /* 👉 change LEFT → RIGHT (better UI) */
+width:85%;
+max-width:320px;
+height:100%;
+background:#fff;
+
+z-index:1000;
+
+padding:20px;
+
+border-radius:20px 0 0 20px;
+
+box-shadow:
+-10px 0 30px rgba(0,0,0,0.15);
+
+transition:0.35s ease;
+
+overflow-y:auto;
+}
+
+/* ACTIVE */
+.filters.active{
+right:0;
+}
+
+/* CLOSE BUTTON */
+.close-btn{
+display:block;
+background:#ff5a5f;
+color:#fff;
+border:none;
+padding:6px 10px;
+border-radius:8px;
+margin-bottom:10px;
+font-size:14px;
+}
+
+/* INPUT FIX */
+.filters input,
+.filters select{
+font-size:14px;
+}
 
 }
 

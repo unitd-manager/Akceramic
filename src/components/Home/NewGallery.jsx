@@ -1,5 +1,12 @@
 import "./Home.css";
 
+import image1 from "../../assets/imagebroce.jpg"
+import image2 from "../../assets/imagebroce1.jpg"
+import image3 from "../../assets/imagebroce2.jpg"
+import image4 from "../../assets/imagebroce7.jpg"
+import image5 from "../../assets/imagebroce6.png"
+import image6 from "../../assets/imagebroce5.jpg"
+
 export default function GalleryNewArrivals() {
 
 return(
@@ -37,13 +44,13 @@ return(
 <div className="gallery-grid">
 
 <div className="big">
-<img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c"/>
+<img src={image1}/>
 </div>
 
-<div><img src="https://images.unsplash.com/photo-1618220252344-8ec99ec624b1"/></div>
-<div><img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154"/></div>
-<div><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea"/></div>
-<div><img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e"/></div>
+<div><img src={image2}/></div>
+<div><img src={image3}/></div>
+<div><img src={image4}/></div>
+<div><img src={image5}/></div>
 
 </div>
 </div>
@@ -81,14 +88,14 @@ return(
 <div className="new-grid">
 
 <div className="big">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"/>
+<img src={image5}/>
 </div>
 
-<div><img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c"/></div>
-<div><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0"/></div>
-<div><img src="https://images.unsplash.com/photo-1583845112239-97ef1341b271"/></div>
-<div><img src="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d"/></div>
-<div><img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8"/></div>
+<div><img src={image2}/></div>
+<div><img src={image3}/></div>
+<div><img src={image4}/></div>
+<div><img src={image5}/></div>
+<div><img src={image6}/></div>
 
 </div>
 </div>

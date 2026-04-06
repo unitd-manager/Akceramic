@@ -20,22 +20,37 @@ export default function TileProductPage() {
 
 
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
+ const handleSubmit = async () => {
 
-  const payload = {
-    product_id: id,
-    user_id: "1"
-  };
+  try {
 
-  api.post("/Ecom/insertCart", payload)
-    .then(() => {
-      alert("Added to Cart ✅");
-      navigate("/TilesCart");
-    })
-    .catch(err => console.log(err));
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || !user.user_id) {
+      alert("Login required");
+      return;
+    }
+
+    const payload = {
+      product_id: id,
+      user_id: user.user_id   // ✅ FIXED
+    };
+
+    await api.post("/Ecom/insertCart", payload);
+
+    alert("Added to Cart ✅");
+
+    // ✅ 🔥 IMPORTANT → update navbar instantly
+    window.dispatchEvent(new Event("cartUpdated"));
+
+    // OPTIONAL → go to cart
+    navigate("/TilesCart");
+
+  } catch (err) {
+    console.log(err);
+  }
+
 };
-
   // 🔹 FETCH PRODUCT
   useEffect(() => {
     if (!id) return;
@@ -124,11 +139,12 @@ export default function TileProductPage() {
     <span>{totalArea} Sq.ft</span>
   </div> */}
           <button
-            className="primary-btn"
-          onClick={handleSubmit}
-          >
-            Add to Cart
-          </button>
+  type="button"
+  className="primary-btn"
+  onClick={handleSubmit}
+>
+  Add to Cart
+</button>
 
         </div>
 

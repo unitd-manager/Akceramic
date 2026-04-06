@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero";
@@ -12,6 +14,8 @@ import Agents from "./components/Agents";
 import Articles from "./components/Articles";
 import Partners from "./components/Partners";
 import Footer from "./components/Footer";
+import GlobalSection from "./components/global/GlobalSection";
+import HeroOffer from "./components/Home/HeroOffer"
 
 import Home from "./components/Home/Home"
 import MobileBottomNav from "./components/Navbar/MobileBottomNav";
@@ -34,7 +38,11 @@ function App() {
   return (
     <>
       <Navbar />
-
+      <ToastContainer
+  position="top-right"
+  autoClose={2000}
+  theme="colored"
+/>
       <Routes>
 
         {/* Home Page */}
@@ -42,7 +50,8 @@ function App() {
           path="/"
           element={
             <>
-              <Hero />
+               <GlobalSection/>
+               {/* <HeroOffer/> */}
               <Featured />
               <Newgallery/>
               <Categories />
@@ -69,6 +78,7 @@ function App() {
           {/* Auth        */}
             <Route path="/MyProfile" element={<MyProfile />} />
               <Route path="/Login" element={<Login />} />      
+               <Route path="/GlobalSection" element={<GlobalSection />} />  
         
       </Routes>
       <MobileBottomNav/>

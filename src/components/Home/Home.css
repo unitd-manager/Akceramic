@@ -117,7 +117,7 @@ flex-wrap:wrap;
 .premium-title{
 font-size:40px;
 font-weight:800;
-background:linear-gradient(90deg,#111,#555,#111);
+background:linear-gradient(#fff, #111);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 position:relative;

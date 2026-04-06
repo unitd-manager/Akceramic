@@ -12,7 +12,7 @@ FaMoon,
 FaSun
 } from "react-icons/fa";
 
-import Aklogo from "../../assets/Logo/Ak Ceramic World logo.png";
+import Aklogo from "../../assets/Logo/akceramicslogo.png";
 import api from "../Auth/constant/api";
 
 export default function Navbar(){
@@ -27,17 +27,31 @@ const navigate = useNavigate();
 const user = JSON.parse(localStorage.getItem("user"));
 
 // ✅ FETCH CART COUNT
-useEffect(()=>{
+useEffect(() => {
 
-if(user){
-api.get(`/Ecom/getCartByUser/${user.user_id}`)
-.then(res=>{
-setCartCount(res.data.data?.length || 0);
-})
-.catch(err=>console.log(err));
-}
+  const fetchCart = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-},[]);
+    if (user) {
+      api.get(`/Ecom/getCartByUser/${user.user_id}`)
+        .then(res => {
+          setCartCount(res.data.data?.length || 0);
+        })
+        .catch(err => console.log(err));
+    }
+  };
+
+  // ✅ FIRST LOAD
+  fetchCart();
+
+  // ✅ 🔥 LISTEN FOR CART UPDATE EVENT
+  window.addEventListener("cartUpdated", fetchCart);
+
+  return () => {
+    window.removeEventListener("cartUpdated", fetchCart);
+  };
+
+}, []);
 
 // ✅ DARK MODE
 useEffect(()=>{
@@ -73,7 +87,7 @@ return(
 
 <li><NavLink to="/">Home</NavLink></li>
 <li><NavLink to="/TilesList">Tiles</NavLink></li>
-<li><NavLink to="/contact">Contact</NavLink></li>
+<li><NavLink to="/GlobalSection">Contact</NavLink></li>
 
 </ul>
 
@@ -106,7 +120,7 @@ return(
 
 {/* 🌙 DARK MODE */}
 <div className="icon" onClick={()=>setDark(!dark)}>
-{dark ? <FaSun/> : <FaMoon/>}
+  {dark ? <FaSun style={{ color: "gold" }} /> : <FaMoon />}
 </div>
 
 {/* 👤 USER */}

@@ -1,35 +1,166 @@
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+FaShoppingCart
+} from "react-icons/fa";
+import { toast } from "react-toastify";
 import api from "../Auth/constant/api"
-
 
 export default function ProductsPage() {
 
 const navigate = useNavigate();
-const [products, setProducts] = useState([]);
 
- useEffect(() => {
-    api.get("/Ecom/getProductEcom")
+const [products, setProducts] = useState([]);
+const [filtered, setFiltered] = useState([]);
+
+// 🔍 FILTER STATES
+const [search, setSearch] = useState("");
+const [brand, setBrand] = useState("");
+const [size, setSize] = useState("");
+const [finish, setFinish] = useState("");
+const [priceRange, setPriceRange] = useState("");
+
+// ✅ MOBILE FILTER
+const [showFilter, setShowFilter] = useState(false);
+
+// 📄 PAGINATION
+const [currentPage,setCurrentPage] = useState(1);
+const productsPerPage = 6;
+
+
+const [cartIds, setCartIds] = useState([]);
+
+useEffect(() => {
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (user && user.user_id) {
+    api.get(`/Ecom/getCartByUser/${user.user_id}`)
       .then(res => {
-        setProducts(res.data.data || []);
+        const ids = res.data.data.map(item => item.product_id);
+        setCartIds(ids);
       })
       .catch(err => console.log(err));
-  }, []);
+  }
 
+}, []);
 
+useEffect(() => {
+  api.get("/Ecom/getProductEcom")
+    .then(res => {
+      setProducts(res.data.data || []);
+    })
+    .catch(err => console.log(err));
+}, []);
 
-const [currentPage,setCurrentPage] = useState(1);
+// =========================
+// 🔥 APPLY FILTER
+// =========================
+const applyFilter = () => {
 
-const productsPerPage = 6;
+  let data = [...products];
+
+  if (search) {
+    data = data.filter(item =>
+      item.product_name?.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  if (brand && brand !== "Brand") {
+    data = data.filter(item => item.brand === brand);
+  }
+
+  if (size && size !== "Size") {
+    data = data.filter(item => item.size === size);
+  }
+
+  if (finish && finish !== "Finish") {
+    data = data.filter(item => item.finish === finish);
+  }
+
+  if (priceRange && priceRange !== "Price Range") {
+
+    if (priceRange === "₹40 - ₹60") {
+      data = data.filter(item => item.price >= 40 && item.price <= 60);
+    }
+
+    if (priceRange === "₹60 - ₹80") {
+      data = data.filter(item => item.price >= 60 && item.price <= 80);
+    }
+
+    if (priceRange === "₹80 - ₹120") {
+      data = data.filter(item => item.price >= 80 && item.price <= 120);
+    }
+  }
+
+  setFiltered(data);
+  setCurrentPage(1);
+};
+
+// =========================
+// ❌ CLEAR FILTER
+// =========================
+const clearFilter = () => {
+  setSearch("");
+  setBrand("");
+  setSize("");
+  setFinish("");
+  setPriceRange("");
+  setFiltered([]);
+};
+
+// =========================
+// 📄 DATA
+// =========================
+const displayProducts = filtered.length ? filtered : products;
 
 const indexOfLast = currentPage * productsPerPage;
 const indexOfFirst = indexOfLast - productsPerPage;
 
-const currentProducts = products.slice(indexOfFirst,indexOfLast);
+const currentProducts = displayProducts.slice(indexOfFirst,indexOfLast);
 
-const totalPages = Math.ceil(products.length / productsPerPage);
+const totalPages = Math.ceil(displayProducts.length / productsPerPage);
 
-console.log('list',currentProducts)
+// =========================
+// 🛒 ADD CART
+// =========================
+const handleSubmit = async (productId) => {
+
+  try {
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || !user.user_id) {
+      toast.error("Login required ❌");
+      return;
+    }
+
+    // 🔥 already added
+    if (cartIds.includes(productId)) {
+      toast.warning("Already added to cart ⚠️");
+      return;
+    }
+
+    await api.post("/Ecom/insertCart", {
+      product_id: productId,
+      user_id: user.user_id
+    });
+
+    toast.success("Added to Cart ✅");
+
+    setCartIds(prev => [...prev, productId]);
+
+    window.dispatchEvent(new Event("cartUpdated"));
+
+  } catch (err) {
+    toast.error("Something went wrong ❌");
+    console.log(err);
+  }
+};
+
+// =========================
+// UI
+// =========================
 
 return(
 
@@ -37,122 +168,142 @@ return(
 
 <div className="container product-layout">
 
-{/* FILTER SIDEBAR */}
+{/* 🔥 OVERLAY */}
+{/* OVERLAY */}
+{showFilter && (
+  <div 
+    className="filter-overlay"
+    onClick={() => setShowFilter(false)}
+  />
+)}
 
-<div className="filters">
+<div className={`filters ${showFilter ? "active" : ""}`}>
+
+<button 
+  className="close-btn"
+  onClick={() => setShowFilter(false)}
+>
+  ✖ Close
+</button>
 
 <h3>Search Tiles</h3>
 
-<input type="text" placeholder="Keyword"/>
+<input 
+  type="text" 
+  placeholder="Keyword"
+  value={search}
+  onChange={(e)=>setSearch(e.target.value)}
+/>
 
-<select>
+<select value={brand} onChange={(e)=>setBrand(e.target.value)}>
 <option>Brand</option>
-<option>Varmora</option>
-<option>Somany</option>
-<option>Hindware</option>
-<option>Simpolo</option>
+<option value="Varmora">Varmora</option>
+<option value="Somany">Somany</option>
+<option value="Hindware">Hindware</option>
+<option value="Simpolo">Simpolo</option>
 </select>
 
-<select>
-<option>Tile Type</option>
-<option>Floor Tile</option>
-<option>Wall Tile</option>
-<option>Parking Tile</option>
-</select>
-
-<select>
+<select value={size} onChange={(e)=>setSize(e.target.value)}>
 <option>Size</option>
-<option>300x300</option>
-<option>300x600</option>
-<option>600x600</option>
-<option>800x800</option>
+<option value="300x300">300x300</option>
+<option value="300x600">300x600</option>
+<option value="600x600">600x600</option>
+<option value="800x800">800x800</option>
 </select>
 
-<select>
+<select value={finish} onChange={(e)=>setFinish(e.target.value)}>
 <option>Finish</option>
-<option>Glossy</option>
-<option>Matt</option>
-<option>Carving</option>
-<option>High Gloss</option>
+<option value="Glossy">Glossy</option>
+<option value="Matt">Matt</option>
+<option value="Carving">Carving</option>
+<option value="High Gloss">High Gloss</option>
 </select>
 
-<select>
+<select value={priceRange} onChange={(e)=>setPriceRange(e.target.value)}>
 <option>Price Range</option>
-<option>₹40 - ₹60</option>
-<option>₹60 - ₹80</option>
-<option>₹80 - ₹120</option>
+<option value="₹40 - ₹60">₹40 - ₹60</option>
+<option value="₹60 - ₹80">₹60 - ₹80</option>
+<option value="₹80 - ₹120">₹80 - ₹120</option>
 </select>
 
-<button className="filter-btn">Search</button>
+<button 
+  className="filter-btn"
+  onClick={()=>{
+    applyFilter();
+    setShowFilter(false);
+  }}
+>
+Search
+</button>
 
-<button className="clear-btn">Clear Filters</button>
+<button className="clear-btn" onClick={clearFilter}>
+Clear Filters
+</button>
 
 </div>
 
-{/* PRODUCT GRID */}
-
+{/* PRODUCT AREA */}
 <div className="product-area">
 
 <div className="product-top">
 
-<span>{products.length} Search Results</span>
+<span>{displayProducts.length} Search Results</span>
 
-<select>
-<option>Sort by Featured</option>
-<option>Price Low</option>
-<option>Price High</option>
-<option>Newest</option>
-</select>
+{/* 🔥 MOBILE BUTTON */}
+<button 
+  className="mobile-filter-btn"
+  onClick={()=>setShowFilter(true)}
+>
+  Filter ⚙️
+</button>
+
 
 </div>
 
 <div className="product-grid">
 
 {currentProducts.map((item,index)=>(
+
 <div className="product-card" key={index}>
 
-<img   src={`http://localhost:5000/uploads/${item.image}`} alt={item.product_name} />
-{/* Hover Buttons */}
+<img src={`http://localhost:5000/uploads/${item.image}`} alt="" />
+
 <div className="card-actions">
+<button className="wishlist-btn">❤</button>
 
-<button className="wishlist-btn">
-❤
+<button 
+  className="cart-btn"
+  onClick={() => handleSubmit(item.product_id)}
+>
+<FaShoppingCart/>
 </button>
-
-<button className="cart-btn">
-Add Cart
-</button>
-
 </div>
-<div className="product-info">
 
+<div className="product-info">
 <h3>{item.product_name}</h3>
 <p>{item.brand}</p>
-
-<span className="price"> ₹{item.price}/ Sq feet</span>
 
 <div className="tile-meta">
 <span>{item.size}</span>
 <span>{item.finish}</span>
 </div>
 
-
 <button
-  className="view-btn"
-  onClick={() => navigate(`/TilesDetails/${item.product_id}`)}
+className="view-btn"
+onClick={() => navigate(`/TilesDetails/${item.product_id}`)}
 >
-  View Product
+View Product
 </button>
 
 </div>
 
 </div>
+
 ))}
 
 </div>
 
 {/* PAGINATION */}
-
 <div className="pagination">
 
 <button
@@ -163,6 +314,7 @@ Prev
 </button>
 
 {Array.from({length: totalPages},(_,i)=>(
+
 <button
 key={i}
 className={currentPage === i+1 ? "active-page" : ""}
@@ -170,6 +322,7 @@ onClick={()=>setCurrentPage(i+1)}
 >
 {i+1}
 </button>
+
 ))}
 
 <button
@@ -188,5 +341,4 @@ Next
 </section>
 
 )
-
 }
