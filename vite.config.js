@@ -5,5 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
     json: {
-    stringify: true}
+    stringify: true},
+     optimizeDeps: {
+    include: ["react-icons/fa", "react-icons/md"]
+  },
+    build: {
+    chunkSizeWarningLimit: 2000,
+    outDir: "build"
+  }
+    
 })

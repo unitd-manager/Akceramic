@@ -226,7 +226,7 @@ if (!user) {
             return (
               <div className="product-box" key={p.cart_id}>
 
-                <img src={`http://localhost:5000/uploads/${p.image}`} alt="" />
+                <img src={`https://akceramicworldadmin.unitdtechnologies.com/uploads/${p.image}`} alt="" />
 
                 <div className="info">
 

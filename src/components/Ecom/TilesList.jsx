@@ -266,7 +266,7 @@ Clear Filters
 
 <div className="product-card" key={index}>
 
-<img src={`http://localhost:5000/uploads/${item.image}`} alt="" />
+<img src={`https://akceramicworldadmin.unitdtechnologies.com/uploads/${item.image}`} alt="" />
 
 <div className="card-actions">
 <button className="wishlist-btn">❤</button>

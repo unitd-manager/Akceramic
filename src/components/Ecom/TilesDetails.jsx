@@ -68,7 +68,7 @@ export default function TileProductPage() {
 
         setMainImage(
           imgs.length > 0
-            ? `http://localhost:5000/uploads/${imgs[0].image}`
+            ? `https://akceramicworldadmin.unitdtechnologies.com/uploads/${imgs[0].image}`
             : "/no-image.png"
         );
 
@@ -104,9 +104,9 @@ export default function TileProductPage() {
             {images.map((img, i) => (
               <img
                 key={i}
-                src={`http://localhost:5000/uploads/${img.image}`}
+                src={`https://akceramicworldadmin.unitdtechnologies.com/uploads/${img.image}`}
                 onClick={() => {
-                  setMainImage(`http://localhost:5000/uploads/${img.image}`);
+                  setMainImage(`https://akceramicworldadmin.unitdtechnologies.com/uploads/${img.image}`);
                   setCurrentIndex(i);
                 }}
               />
@@ -176,7 +176,7 @@ export default function TileProductPage() {
           </button>
 
           <img
-            src={`http://localhost:5000/uploads/${images[currentIndex]?.image}`}
+            src={`https://akceramicworldadmin.unitdtechnologies.com/uploads/${images[currentIndex]?.image}`}
             className="modal-img"
             onError={(e) => {
               e.target.src = "/no-image.png";

@@ -49,7 +49,7 @@ export default function HomeBanner() {
     <section className="home-banner">
 
       {/* 🌍 Globe */}
-      <div className="banner-globe">
+      <div className="globe-bg">
         <Globe />
       </div>
 
